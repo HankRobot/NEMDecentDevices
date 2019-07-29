@@ -1,0 +1,23 @@
+{
+  "name": "nemmultisig",
+  "version": "1.0.0",
+  "description": "for aggregate transactions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HankRobot/NEMMultisig.git"
+  },
+  "author": "Hank Bot",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HankRobot/NEMMultisig/issues"
+  },
+  "homepage": "https://github.com/HankRobot/NEMMultisig#readme",
+  "dependencies": {
+    "nem2-sdk": "^0.13.1",
+    "rxjs": "^6.5.2"
+  }
+}
