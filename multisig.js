@@ -35,16 +35,16 @@ const Account = nem2Sdk.Account,
     mergeMap = operators.mergeMap;
 
 /* start block 01 */
-const nodeUrl = 'http://52.194.207.217:3000';
+const nodeUrl = 'http://3.1.202.148:3000';
 const transactionHttp = new TransactionHttp(nodeUrl);
 const listener = new Listener(nodeUrl);
 
-const privateKey = "1E79ECA0BB7023817F42A48B2F9F22088A413EAD871FD6834FB94F0D73C7FD47";
+const privateKey = "1E79ECA0BB7023817F42A48B2F9F22088A413EAD871FD6834FB94F0D73C7FD47"; //Multisig1 Account
 const account = Account.createFromPrivateKey(privateKey, NetworkType.MIJIN_TEST);
 
-const cosignatory1PublicKey = "53312DF039B35C81B158EA0A9AAE27BF74EAF99FEC233D3657EDADE4011F3749";
+const cosignatory1PublicKey = "53312DF039B35C81B158EA0A9AAE27BF74EAF99FEC233D3657EDADE4011F3749"; //Multisig1 Account
 const cosignatory1 = PublicAccount.createFromPublicKey(cosignatory1PublicKey, NetworkType.MIJIN_TEST);
-const cosignatory2PublicKey = "FD3DC95C86EEAACABC000771D20DE76677C5B4EC77B1D8A083190D9C3A2F3FEC";
+const cosignatory2PublicKey = "FD3DC95C86EEAACABC000771D20DE76677C5B4EC77B1D8A083190D9C3A2F3FEC"; //Multisig2 Account
 const cosignatory2 = PublicAccount.createFromPublicKey(cosignatory2PublicKey, NetworkType.MIJIN_TEST);
 /* end block 01 */
 
