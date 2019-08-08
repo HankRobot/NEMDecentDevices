@@ -1,27 +1,14 @@
-/*-------------------------------------------------------------------------------For Display Libraries-------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------For WIFI Libraries-------------------------------------------------------------------------------*/
 #include <ESP8266WiFi.h>
-#include <Wire.h>  // Only needed for Arduino 1.6.5 and earlier
-#include "SSD1306Wire.h" // legacy include: `#include "SSD1306.h"`
-
-// Initialize the OLED display using Wire library
-SSD1306Wire  display(0x3c, D2, D1);  //D2=SDK  D1=SCK  As per labeling on NodeMCU
 /*-------------------------------------------------------------------------------For REST API-------------------------------------------------------------------------------*/
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
 
 const char* ssid = "NBC_Tenant";
 const char* password = "nbctenant1234!";
-/*-------------------------------------------------------------------------------Blockchain Info-------------------------------------------------------------------------------*/
-String pubkey = "DA71E422A3B22BE6CC691EC3A569C73137DA921F339CD1B5DDD5A39A2BD3F281"; //Your public key
 /*--------------------------------------------------------------------------------Setup----------------------------------------------------------------------------------- */
-void displaysetup() {
-    Serial.begin(115200);
-    display.init();
-    display.flipScreenVertically();
-    display.setFont(ArialMT_Plain_16);
-}
-
 void WifiSetup(){
+    Serial.begin(115200);
     WiFi.begin(ssid, password);
     while (WiFi.status() != WL_CONNECTED) 
     {
@@ -31,7 +18,6 @@ void WifiSetup(){
 }
 
 void setup() {
-    displaysetup();
     WifiSetup();
     pinMode(D7,OUTPUT);
 }
