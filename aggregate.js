@@ -47,6 +47,12 @@ function checkvalidity(hashstring)
     });
 }
 
+var led1 = '';
+var led2 = '';
+
+led1 = process.argv[2];
+led2 = process.argv[3];
+
 /* start block 01 */
 const transactionHttp = new TransactionHttp(node);
 
@@ -63,8 +69,8 @@ mosaicId = "77a1969932d987d7";
 mosaicamount = 1;
 const amount = [new Mosaic(new MosaicId(mosaicId), UInt64.fromUint(mosaicamount))]; // 10 cat.currency represent 10 000 000 micro cat.currency
 
-const brotherTransferTransaction = TransferTransaction.create(Deadline.create(), brotherAccount, amount, PlainMessage.create('1'), NetworkType.MIJIN_TEST);
-const sisterTransferTransaction = TransferTransaction.create(Deadline.create(), sisterAccount, amount, PlainMessage.create('1'), NetworkType.MIJIN_TEST);
+const brotherTransferTransaction = TransferTransaction.create(Deadline.create(), brotherAccount, amount, PlainMessage.create(led1), NetworkType.MIJIN_TEST);
+const sisterTransferTransaction = TransferTransaction.create(Deadline.create(), sisterAccount, amount, PlainMessage.create(led2), NetworkType.MIJIN_TEST);
 
 const aggregateTransaction = AggregateTransaction.createComplete(
     Deadline.create(),
