@@ -1,30 +1,61 @@
-#include "ESP8266.h"
+/*-------------------------------------------------------------------------------For WIFI Libraries-------------------------------------------------------------------------------*/
+#include <ESP8266WiFi.h>
+/*-------------------------------------------------------------------------------For REST API-------------------------------------------------------------------------------*/
+#include <ESP8266HTTPClient.h>
+#include <ArduinoJson.h>
 
-const char *SSID     = "NBC_Tenant";
-const char *PASSWORD = "nbctenant1234!";
-
-SoftwareSerial mySerial(10, 11); //SoftwareSerial pins for MEGA/Uno. For other boards see: https://www.arduino.cc/en/Reference/SoftwareSerial
-
-ESP8266 wifi(mySerial); 
-
-void setup(void)
-{
-  //Start Serial Monitor at any BaudRate
-  Serial.begin(9600);
-  Serial.println("Begin");
-
-  if (!wifi.init(SSID, PASSWORD))
-  {
-    Serial.println("Wifi Init failed. Check configuration.");
-    while (true) ; // loop eternally
-  }
+const char* ssid = "NBC_Tenant";
+const char* password = "nbctenant1234!";
+/*--------------------------------------------------------------------------------Setup----------------------------------------------------------------------------------- */
+void WifiSetup(){
+    Serial.begin(115200);
+    WiFi.begin(ssid, password);
+    while (WiFi.status() != WL_CONNECTED) 
+    {
+        delay(1000);
+        Serial.println("Connecting...");
+    }
 }
 
-char* request = "POST /fcm/send HTTP/1.1\r\nHost: fcm.googleapis.com\r\ncontent-type: application/json\r\ncontent-length: 200\r\nauthorization: key=AIzaSyAFRHNLIRXjVkEHHhzkEYk3_cycj2yVkv0\r\nConnection: close\r\n\r\n{\r\n\t\"to\": \"/topics/general\",\r\n\t\"notification\":{\r\n\t\t\"title\": \"Motion detected!\",\r\n\t\t\"body\": \"An activity was registered by sensor.\",\r\n\t\t\"sound\": \"default\"\r\n\t},\r\n\t\"data\": {\r\n\t\t\"sensorValue\": \"01\"\r\n\t}\r\n}";
-void loop(void)
-{   
-    Serial.println("Sending Request to www.google.com");
-    wifi.httpGet(request);
+void setup() {
+    WifiSetup();
+    pinMode(15,OUTPUT);
+}
+/*--------------------------------------------------------------------------------Main Program-------------------------------------------------------------------------------- */
+int ledstatus;
+void getblockchaininfo(){
+    if (WiFi.status() == WL_CONNECTED) {
+        HTTPClient http; //Object of class HTTPClient
+        http.begin("http://3.1.202.148:3000/account/DA71E422A3B22BE6CC691EC3A569C73137DA921F339CD1B5DDD5A39A2BD3F281/transactions");
+        int httpCode = http.GET();
 
+        if (httpCode > 0) {
+            const size_t bufferSize = JSON_OBJECT_SIZE(7)+ 370;
+            DynamicJsonBuffer jsonBuffer(bufferSize);
+            JsonArray& rootarray = jsonBuffer.parseArray(http.getString());
+            JsonObject& root = rootarray[0];
+
+            const char* message = root["transaction"]["transactions"][1]["transaction"]["message"]["payload"];
+
+            Serial.print("Message:");
+            Serial.print(message);
+
+            const char* ptr = strstr(message, "30");
+
+            if(message == ptr){
+                ledstatus = 0;
+            }
+            else
+            {
+                ledstatus = 1;
+            }
+        }
+        http.end(); //Close connection
+    }
+}
+
+void loop(){
+    digitalWrite(15,ledstatus);
+    getblockchaininfo();
     delay(4000);
 }

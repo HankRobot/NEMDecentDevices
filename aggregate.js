@@ -64,7 +64,7 @@ mosaicamount = 1;
 const amount = [new Mosaic(new MosaicId(mosaicId), UInt64.fromUint(mosaicamount))]; // 10 cat.currency represent 10 000 000 micro cat.currency
 
 const brotherTransferTransaction = TransferTransaction.create(Deadline.create(), brotherAccount, amount, PlainMessage.create('1'), NetworkType.MIJIN_TEST);
-const sisterTransferTransaction = TransferTransaction.create(Deadline.create(), sisterAccount, amount, PlainMessage.create('0'), NetworkType.MIJIN_TEST);
+const sisterTransferTransaction = TransferTransaction.create(Deadline.create(), sisterAccount, amount, PlainMessage.create('1'), NetworkType.MIJIN_TEST);
 
 const aggregateTransaction = AggregateTransaction.createComplete(
     Deadline.create(),
