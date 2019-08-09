@@ -4,6 +4,8 @@
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
 
+#define ledpin D7
+
 const char* ssid = "NBC_Tenant";
 const char* password = "nbctenant1234!";
 /*--------------------------------------------------------------------------------Setup----------------------------------------------------------------------------------- */
@@ -19,8 +21,9 @@ void WifiSetup(){
 
 void setup() {
     WifiSetup();
-    pinMode(D7,OUTPUT);
+    pinMode(ledpin,OUTPUT);
 }
+
 /*--------------------------------------------------------------------------------Main Program-------------------------------------------------------------------------------- */
 int ledstatus;
 void getblockchaininfo(){
@@ -55,7 +58,7 @@ void getblockchaininfo(){
 }
 
 void loop(){
-    digitalWrite(D7,ledstatus);
+    digitalWrite(ledpin,ledstatus);
     getblockchaininfo();
     delay(4000);
 }

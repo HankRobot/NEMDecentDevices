@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/HankRobot/NEMMultisig#readme",
   "dependencies": {
+    "androidjs": "^2.0.1",
     "nem2-sdk": "^0.13.1",
     "rxjs": "^6.5.2"
   }
