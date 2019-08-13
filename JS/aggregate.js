@@ -56,7 +56,7 @@ led2 = process.argv[3];
 /* start block 01 */
 const transactionHttp = new TransactionHttp(node);
 
-const privateKey = "73DF235222244CAFC1B1FDDA31DFC7D3AAC0142FB4087CA39D26D4079C999749"; //Hank Bot
+const privateKey = "5D7E87DF82EB6986646B7DBB38CE792117BD106D5179ADC2E1CE0DDE8DBAEE78"; //Hank Bot
 const account = Account.createFromPrivateKey(privateKey, NetworkType.MIJIN_TEST);
 
 const brotherAddress = 'SCQVB7TIAWI7OJFGRRRU57UPJ4BFNHORCE2JTV2J';  //Anthony Bot
