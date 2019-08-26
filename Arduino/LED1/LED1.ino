@@ -6,8 +6,8 @@
 
 #define ledpin D7
 
-const char* ssid = "asus2@unifi";
-const char* password = "1638chiaong63";
+const char* ssid = "NBC_Tenant";
+const char* password = "nbctenant1234!";
 /*--------------------------------------------------------------------------------Setup----------------------------------------------------------------------------------- */
 void WifiSetup(){
     Serial.begin(115200);
@@ -60,5 +60,4 @@ void getblockchaininfo(){
 void loop(){
     digitalWrite(ledpin,ledstatus);
     getblockchaininfo();
-    delay(4000);
 }
