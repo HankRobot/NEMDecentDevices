@@ -16,8 +16,8 @@
  *
  */
 
-const nem2Sdk = require("nem2-sdk");
-const Account = nem2Sdk.Account,
+    const nem2Sdk = require("nem2-sdk");
+    const Account = nem2Sdk.Account,
     Deadline = nem2Sdk.Deadline,
     NetworkType = nem2Sdk.NetworkType,
     TransferTransaction = nem2Sdk.TransferTransaction,
@@ -29,7 +29,7 @@ const Account = nem2Sdk.Account,
     UInt64 = nem2Sdk.UInt64,
     MosaicId = nem2Sdk.MosaicId;
 
-const node = 'http://3.1.202.148:3000';
+const node = 'https://jp5.nemesis.land:3001/';
 
 function checkvalidity(hashstring)
 {
