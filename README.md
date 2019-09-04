@@ -1,2 +1,2 @@
 # NEMMultisig
-For aggrefate transactions
+For aggregate transactions
